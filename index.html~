@@ -1,13 +1,13 @@
 <!doctype html>
 <!-- Benedikt M. Scheving-Thorsteinsson-->
-<html lang="en-GB" data-framework="backbonejs">
+<html lang="en-GB">
 	<head>
 		<meta charset="utf-8">
 		<title>SquadThunder</title>
 		<link rel="stylesheet" href="assets/style.css">
 	</head>
 	<body>
-	
+	<p>Squad thunder is here as test!</p>
 	
 	<script src="js/lib/backbone.js"></script>
 	</body>
