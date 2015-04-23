@@ -12,7 +12,23 @@
 	</div>
 	<form id=gamefilter" action="#">
 		<div>
-			<input type="range"  min="0" max="100" />
+			<p>I'm playing in:</p>
+			<input type="radio" name="gamemode" value="AB">Arcade<br>
+			<input type="radio" name="gamemode" value="RB">Realistic<br>
+			<input type="radio" name="gamemode" value="SB">Simulator<br>
+		</div>
+		<div>
+			<p>I'm using a:</p>
+                        <input type="radio" name="vehicletype" value="fighter">Fighter<br>
+                        <input type="radio" name="vehicletype" value="bomber">Bomber<br>
+                        <input type="radio" name="vehicletype" value="attacker">Attacker<br>
+			<input type="radio" name="vehicletype" value="tank">Tank<br>
+			<input type="radio" name="vehicletype" value="truck">AA truck<br>
+                </div>
+
+		<div>
+			<p>My Battle Rating (BR) is:</p>
+			<input type="range"  min="1.0" max="9.0" />
 		</div>
 	</form>
 
