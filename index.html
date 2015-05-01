@@ -13,10 +13,17 @@
 			<p>Squad thunder!</p>
 		</ul>
 	</nav>
-	
+	<section id="playerapp">
+		<header id="header">
+		<input id="new-player" placeholder="What is your username?" autofocus>
+	</header>
+		<section id="main">
+			<input id="toggle-all" type="checkbox">
+			<label for="toggle-all">Mark all as complete</label>
+			<ul id="player-list"></ul>
+		</section>
+	</section>
 	<form id=gamefilter" action="#">
-		<section id="gameapp">
-		<input id="new-player" placeholder="What is your username?">
 		<div>
 			<p>I'm playing in:</p>
 			<input type="radio" name="gamemode" value="AB">Arcade<br>
@@ -44,7 +51,16 @@
 	</section>
 	
 
+	<script src="js/lib/base.js"></script>
 	<script src="js/lib/backbone.js"></script>
+	<script src="js/lib/backbone.localStorage.js"></script>
+	<script src="js/lib/jquery.js"></script>
+	<script src="js/lib/underscore.js"></script>
+	<script src="js/models/player.js"></script>
+	<script src="js/collections/players.js"></script>
+	<script src="js/views/players.js"></script>
+	<script src="js/views/app.js"></script>
+	<script src="js/routers/router.js"></script>
 	<script src="js/app.js"></script>
 	<script src="js/scrape/scrape.js"></script>
 	</body>

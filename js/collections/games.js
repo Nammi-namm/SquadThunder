@@ -1,4 +1,4 @@
-// js/collections/game.js
+// js/collections/player.js
 
   var app = app || {};
 

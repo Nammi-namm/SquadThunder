@@ -25,7 +25,7 @@
 
       // Trigger a collection filter event, causing hiding/unhiding
       // of Todo view items
-      app.Players.trigger('filter');
+      app.Playerss.trigger('filter');
     }
   });
 

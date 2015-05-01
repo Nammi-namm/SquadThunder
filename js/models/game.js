@@ -1,9 +1,9 @@
- // js/models/todo.js
+ // js/models/player.js
 
   var app = app || {};
 
-  // Todo Model
-  // ----------
+  // Player Model
+  
   // Our basic **Todo** model has `title` and `completed` attributes.
   // bæði eru passed sem defaults, og toggle er notað þannig að completion getur verið sett og persisted á sama tíma.
 
