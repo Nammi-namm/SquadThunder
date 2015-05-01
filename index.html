@@ -9,18 +9,9 @@
 	<body>
 		<section id="todoapp">
 		<header id="header">
-		<h1>Your name:</h1>
+		<h1>SquadThunder</h1>
 		<!-- Þarf input fyrir new todos -->
 		<input id="new-todo" placeholder="What is your in game name?" autofocus>
-	</header>
-		<section id="main">
-			<input id="toggle-all" type="checkbox">
-			<label for="toggle-all">Mark all as complete</label>
-			<ul id="todo-list"></ul>
-		</section>
-	<footer id="footer"></footer>
-		</section>
-		<form id=gamefilter" action="#">
 		<div>
 			<p>I'm playing in:</p>
 			<input type="radio" name="gamemode" value="AB">Arcade<br>
@@ -34,13 +25,18 @@
             <input type="radio" name="vehicletype" value="attacker">Attacker<br>
 			<input type="radio" name="vehicletype" value="tank">Tank<br>
 			<input type="radio" name="vehicletype" value="truck">AA truck<br>
-                </div>
-
+        </div>
 		<div>
 			<p>My Battle Rating (BR) is:</p>
 			<input type="range"  min="1.0" max="9.0" />
 		</div>
-	</form>
+	</header>
+		<section id="main">
+			<input id="toggle-all" type="checkbox">
+			<label for="toggle-all">Mark all as complete</label>
+			<ul id="todo-list"></ul>
+		</section>
+	</section>
 	<!-- spes commentar </%/= og </%/- (með einga skástrik) fyrir underscore virkni -->
 	<script type="text/template" id="item-template">
 		<div class="view">
