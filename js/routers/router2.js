@@ -21,13 +21,13 @@
       if (param) {
         param = param.trim();
       }
-      app.TodoFilter = param || '';
+      app.PlayerFilter = param || '';
 
       // Trigger a collection filter event, causing hiding/unhiding
       // of Todo view items
-      app.Todos.trigger('filter');
+      app.Playerss.trigger('filter');
     }
   });
 
-  app.TodoRouter = new Workspace();
+  app.PlayerRouter = new Workspace();
   Backbone.history.start();

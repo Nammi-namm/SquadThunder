@@ -12,7 +12,7 @@
 
     // Instead of generating a new element, bind to the existing skeleton of
     // the App already present in the HTML.
-    el: '#todoapp',
+    el: '#playerapp',
 
     // Our template for the line of statistics at the bottom of the app.
     statsTemplate: _.template( $('#stats-template').html() ),
@@ -23,7 +23,7 @@
     //clearCompleted removar itemin í todo list sem hafa verið merkt sem completed þegar user klikkar á clear Completed checkbox.
     // toggleAllComplete leyfir notandi að merkja alla itemum í todo list sem completedy með því að smella á toggle-all 
     events: {
-      'keypress #new-todo': 'createOnEnter',
+      'keypress #new-player': 'createOnEnter',
       'click #clear-completed': 'clearCompleted',
       'click #toggle-all': 'toggleAllComplete'
     },
@@ -34,27 +34,27 @@
     // loading any preexisting todos that might be saved in *localStorage*.
     initialize: function() {
       this.allCheckbox = this.$('#toggle-all')[0];
-      this.$input = this.$('#new-todo');
+      this.$input = this.$('#new-player');
       this.$footer = this.$('#footer');
       this.$main = this.$('#main');
 
-      this.listenTo(app.Todos, 'add', this.addOne);
-      this.listenTo(app.Todos, 'reset', this.addAll);
+      this.listenTo(app.Players, 'add', this.addOne);
+      this.listenTo(app.Players, 'reset', this.addAll);
 
-      this.listenTo(app.Todos, 'change:completed', this.filterOne);
-      this.listenTo(app.Todos,'filter', this.filterAll);
-      this.listenTo(app.Todos, 'all', this.render);
+      this.listenTo(app.Players, 'change:completed', this.filterOne);
+      this.listenTo(app.Players,'filter', this.filterAll);
+      this.listenTo(app.Players, 'all', this.render);
 
-      app.Todos.fetch();
+      app.Players.fetch();
     },
 
     // Re-rendering the App just means refreshing the statistics -- the rest
     // of the app doesn't change.
     render: function() {
-      var completed = app.Todos.completed().length;
-      var remaining = app.Todos.remaining().length;
+      var completed = app.Players.completed().length;
+      var remaining = app.Players.remaining().length;
 
-      if ( app.Todos.length ) {
+      if ( app.Players.length ) {
         this.$main.show();
         this.$footer.show();
 
@@ -65,7 +65,7 @@
 
         this.$('#filters li a')
           .removeClass('selected')
-          .filter('[href="#/' + ( app.TodoFilter || '' ) + '"]')
+          .filter('[href="#/' + ( app.PlayerFilter || '' ) + '"]')
           .addClass('selected');
       } else {
         this.$main.hide();
@@ -77,25 +77,25 @@
 
     // Add a single todo item to the list by creating a view for it, and
     // appending its element to the `<ul>`.
-    addOne: function( todo ) {
-      var view = new app.TodoView({ model: todo });
-      $('#todo-list').append( view.render().el );
+    addOne: function( player ) {
+      var view = new app.PlayerView({ model: player });
+      $('#player-list').append( view.render().el );
     },
 
     // Add all items in the **Todos** collection at once.
     addAll: function() {
-      this.$('#todo-list').html('');
-      app.Todos.each(this.addOne, this);
+      this.$('#player-list').html('');
+      app.Players.each(this.addOne, this);
     },
 
 	//  filterar bara það sem er selectað
-    filterOne : function (todo) {
-      todo.trigger('visible');
+    filterOne : function (player) {
+      player.trigger('visible');
     },
 
 	// filterar öllu
     filterAll : function () {
-      app.Todos.each(this.filterOne, this);
+      app.Players.each(this.filterOne, this);
     },
 
 
@@ -103,7 +103,7 @@
     newAttributes: function() {
       return {
         title: this.$input.val().trim(),
-        order: app.Todos.nextOrder(),
+        order: app.Players.nextOrder(),
         completed: false
       };
     },
@@ -114,13 +114,13 @@
       if ( event.which !== ENTER_KEY || !this.$input.val().trim() ) {
         return;
       }
-      app.Todos.create( this.newAttributes() );
+      app.Players.create( this.newAttributes() );
       this.$input.val('');
     },
 
     // Clear all completed todo items, destroying their models.
     clearCompleted: function() {
-      _.invoke(app.Todos.completed(), 'destroy');
+      _.invoke(app.Players.completed(), 'destroy');
       return false;
     },
 
@@ -128,8 +128,8 @@
     toggleAllComplete: function() {
       var completed = this.allCheckbox.checked;
 
-      app.Todos.each(function( todo ) {
-        todo.save({
+      app.Players.each(function( player ) {
+        player.save({
           'completed': completed
         });
       });

@@ -14,14 +14,47 @@
 			<p>Squad thunder!</p>
 		</ul>
 	</nav>
-	<section id="playerapp">
+<section id="todoapp">
 		<header id="header">
-			<input id="new-player" placeholder="What is your username?" autofocus>
-		</header>
+		<h1>todos</h1>
+		<!-- Þarf input fyrir new todos -->
+		<input id="new-todo" placeholder="What needs to be done?" autofocus>
+	</header>
 		<section id="main">
-			<ul id="player-list"></ul>
+			<input id="toggle-all" type="checkbox">
+			<label for="toggle-all">Mark all as complete</label>
+			<ul id="todo-list"></ul>
 		</section>
-	</section>
+	<footer id="footer"></footer>
+		</section>
+	<!-- spes commentar </%/= og </%/- (með einga skástrik) fyrir underscore virkni -->
+	<script type="text/template" id="item-template">
+		<div class="view">
+			<input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
+			<label><%- title %></label>
+			<button class="destroy"></button>
+		</div>
+		<input class="edit" value="<%- title %>">
+	</script>
+	<!-- notað til að populeita footerinn-->
+	<!-- displayer hvað mörg incomplete items eftir og helfur hyperlinkar sem við notum til að gera nokkur actions með router. Notar líka takka sem hreinsar allt-->
+	<script type="text/template" id="stats-template">
+		<span id="todo-count"><strong><%= remaining %></strong> <%= remaining === 1 ? 'item' : 'items' %> left</span>
+			<ul id="filters">
+				<li>
+				<a class="selected" href="#/">All</a>
+				</li>
+				<li>
+				<a href="#/active">Active</a>
+				</li>
+				<li>
+				<a href="#/completed">Completed</a>
+				</li>
+			</ul>
+		<% if (completed) { %>
+		<button id="clear-completed">Clear completed (<%= completed %>)</button>
+		<% } %>
+	</script>
 	<form id=gamefilter" action="#">
 		<div>
 			<p>I'm playing in:</p>
@@ -44,39 +77,11 @@
 		</div>
 	</form>
 	
-	<script type="text/template" id="item-template">
-		<div class="view">
-			<input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
-			<label><%- title %></label>
-			<button class="destroy"></button>
-		</div>
-		<input class="edit" value="<%- title %>">
-	</script>
-
-	<script type="text/template" id="stats-template">
-		<span id="player-count"><strong><%= remaining %></strong> <%= remaining === 1 ? 'item' : 'items' %> left</span>
-			<ul id="filters">
-				<li>
-				<a class="selected" href="#/">All</a>
-				</li>
-				<li>
-				<a href="#/active">Active</a>
-				</li>
-				<li>
-				<a href="#/completed">Completed</a>
-				</li>
-			</ul>
-		<% if (completed) { %>
-		<button id="clear-completed">Clear completed (<%= completed %>)</button>
-		<% } %>
-	</script>	
-	
-	
-	<script src="js/lib/base.js"></script>
-	<script src="js/lib/backbone.js"></script>
-	<script src="js/lib/backbone.localStorage.js"></script>
+	<script src="js/lib/base.js"></script>	
 	<script src="js/lib/jquery.js"></script>
 	<script src="js/lib/underscore.js"></script>
+	<script src="js/lib/backbone.js"></script>
+	<script src="js/lib/backbone.localStorage.js"></script>
 	<script src="js/models/player.js"></script>
 	<script src="js/collections/players.js"></script>
 	<script src="js/views/players.js"></script>

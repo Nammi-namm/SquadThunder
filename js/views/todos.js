@@ -10,7 +10,7 @@
   // stjornar individual todo gögn
 
   // The DOM element for a todo item...
-  app.PlayerView = Backbone.View.extend({
+  app.TodoView = Backbone.View.extend({
 
     //... is a list tag.
     // bara sem eitthvað nafn
@@ -61,8 +61,8 @@
     isHidden : function () {
       var isCompleted = this.model.get('completed');
       return ( // hidden cases only
-        (!isCompleted && app.PlayerFilter === 'completed')
-        || (isCompleted && app.PlayerFilter === 'active')
+        (!isCompleted && app.TodoFilter === 'completed')
+        || (isCompleted && app.TodoFilter === 'active')
       );
     },
 
