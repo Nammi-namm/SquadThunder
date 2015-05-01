@@ -4,7 +4,8 @@
 	<head>
 		<meta charset="utf-8">
 		<title>SquadThunder</title>
-		<link rel="stylesheet' href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/base.css">
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
@@ -15,11 +16,9 @@
 	</nav>
 	<section id="playerapp">
 		<header id="header">
-		<input id="new-player" placeholder="What is your username?" autofocus>
-	</header>
+			<input id="new-player" placeholder="What is your username?" autofocus>
+		</header>
 		<section id="main">
-			<input id="toggle-all" type="checkbox">
-			<label for="toggle-all">Mark all as complete</label>
 			<ul id="player-list"></ul>
 		</section>
 	</section>
@@ -32,9 +31,9 @@
 		</div>
 		<div>
 			<p>I'm using a:</p>
-                        <input type="radio" name="vehicletype" value="fighter">Fighter<br>
-                        <input type="radio" name="vehicletype" value="bomber">Bomber<br>
-                        <input type="radio" name="vehicletype" value="attacker">Attacker<br>
+            <input type="radio" name="vehicletype" value="fighter">Fighter<br>
+            <input type="radio" name="vehicletype" value="bomber">Bomber<br>
+            <input type="radio" name="vehicletype" value="attacker">Attacker<br>
 			<input type="radio" name="vehicletype" value="tank">Tank<br>
 			<input type="radio" name="vehicletype" value="truck">AA truck<br>
                 </div>
@@ -44,13 +43,35 @@
 			<input type="range"  min="1.0" max="9.0" />
 		</div>
 	</form>
-	<section id="main">
-		<input id="toggle-all" type="checkbox">
-		<label for="toggle-all">Mark all as complete</label>
-		<ul id="player-list"></ul>
-	</section>
 	
+	<script type="text/template" id="item-template">
+		<div class="view">
+			<input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
+			<label><%- title %></label>
+			<button class="destroy"></button>
+		</div>
+		<input class="edit" value="<%- title %>">
+	</script>
 
+	<script type="text/template" id="stats-template">
+		<span id="player-count"><strong><%= remaining %></strong> <%= remaining === 1 ? 'item' : 'items' %> left</span>
+			<ul id="filters">
+				<li>
+				<a class="selected" href="#/">All</a>
+				</li>
+				<li>
+				<a href="#/active">Active</a>
+				</li>
+				<li>
+				<a href="#/completed">Completed</a>
+				</li>
+			</ul>
+		<% if (completed) { %>
+		<button id="clear-completed">Clear completed (<%= completed %>)</button>
+		<% } %>
+	</script>	
+	
+	
 	<script src="js/lib/base.js"></script>
 	<script src="js/lib/backbone.js"></script>
 	<script src="js/lib/backbone.localStorage.js"></script>
