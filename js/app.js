@@ -1,9 +1,14 @@
-/**
- * Module dependencies.
- */
 
-var express = require('express')
-, jsdom = require('jsdom')
-, request = require('request')
-, url = require('url')
-, app = module.exports = express.createServer();
+  // js/app.js
+  
+  // executar DOM þegar þetta er loadað.
+
+  var app = app || {};
+  var ENTER_KEY = 13;
+
+  $(function() {
+
+    // Kick things off by creating the **App**.
+    new app.AppView();
+
+  });

@@ -1,6 +1,6 @@
 <!doctype html>
 <!-- Benedikt M. Scheving-Thorsteinsson-->
-<html lang="en-GB">
+<html lang="en-GB" data-framework="backbonejs">
 	<head>
 		<meta charset="utf-8">
 		<title>SquadThunder</title>
@@ -13,7 +13,10 @@
 			<p>Squad thunder!</p>
 		</ul>
 	</nav>
+	
 	<form id=gamefilter" action="#">
+		<section id="gameapp">
+		<input id="new-player" placeholder="What is your username?">
 		<div>
 			<p>I'm playing in:</p>
 			<input type="radio" name="gamemode" value="AB">Arcade<br>
@@ -34,6 +37,12 @@
 			<input type="range"  min="1.0" max="9.0" />
 		</div>
 	</form>
+	<section id="main">
+		<input id="toggle-all" type="checkbox">
+		<label for="toggle-all">Mark all as complete</label>
+		<ul id="player-list"></ul>
+	</section>
+	
 
 	<script src="js/lib/backbone.js"></script>
 	<script src="js/app.js"></script>
