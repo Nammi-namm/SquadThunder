@@ -1,24 +1,17 @@
 <!doctype html>
-<!-- Benedikt M. Scheving-Thorsteinsson-->
-<html lang="en-GB" data-framework="backbonejs">
+<html lang="en_GB" data-framework="backbonejs">
 	<head>
 		<meta charset="utf-8">
 		<title>SquadThunder</title>
-		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/base.css">
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
-	<nav class="nav">
-		<ul>
-			<p>Squad thunder!</p>
-		</ul>
-	</nav>
-<section id="todoapp">
+		<section id="todoapp">
 		<header id="header">
-		<h1>todos</h1>
+		<h1>Your name:</h1>
 		<!-- Þarf input fyrir new todos -->
-		<input id="new-todo" placeholder="What needs to be done?" autofocus>
+		<input id="new-todo" placeholder="What is your in game name?" autofocus>
 	</header>
 		<section id="main">
 			<input id="toggle-all" type="checkbox">
@@ -55,39 +48,16 @@
 		<button id="clear-completed">Clear completed (<%= completed %>)</button>
 		<% } %>
 	</script>
-	<form id=gamefilter" action="#">
-		<div>
-			<p>I'm playing in:</p>
-			<input type="radio" name="gamemode" value="AB">Arcade<br>
-			<input type="radio" name="gamemode" value="RB">Realistic<br>
-			<input type="radio" name="gamemode" value="SB">Simulator<br>
-		</div>
-		<div>
-			<p>I'm using a:</p>
-            <input type="radio" name="vehicletype" value="fighter">Fighter<br>
-            <input type="radio" name="vehicletype" value="bomber">Bomber<br>
-            <input type="radio" name="vehicletype" value="attacker">Attacker<br>
-			<input type="radio" name="vehicletype" value="tank">Tank<br>
-			<input type="radio" name="vehicletype" value="truck">AA truck<br>
-                </div>
-
-		<div>
-			<p>My Battle Rating (BR) is:</p>
-			<input type="range"  min="1.0" max="9.0" />
-		</div>
-	</form>
-	
-	<script src="js/lib/base.js"></script>	
+	<script src="js/lib/base.js"></script>
 	<script src="js/lib/jquery.js"></script>
 	<script src="js/lib/underscore.js"></script>
 	<script src="js/lib/backbone.js"></script>
 	<script src="js/lib/backbone.localStorage.js"></script>
-	<script src="js/models/player.js"></script>
-	<script src="js/collections/players.js"></script>
-	<script src="js/views/players.js"></script>
+	<script src="js/models/todo.js"></script>
+	<script src="js/collections/todos.js"></script>
+	<script src="js/views/todos.js"></script>
 	<script src="js/views/app.js"></script>
 	<script src="js/routers/router.js"></script>
 	<script src="js/app.js"></script>
-	<script src="js/scrape/scrape.js"></script>
 	</body>
 </html>
