@@ -20,6 +20,27 @@
 		</section>
 	<footer id="footer"></footer>
 		</section>
+		<form id=gamefilter" action="#">
+		<div>
+			<p>I'm playing in:</p>
+			<input type="radio" name="gamemode" value="AB">Arcade<br>
+			<input type="radio" name="gamemode" value="RB">Realistic<br>
+			<input type="radio" name="gamemode" value="SB">Simulator<br>
+		</div>
+		<div>
+			<p>I'm using a:</p>
+            <input type="radio" name="vehicletype" value="fighter">Fighter<br>
+            <input type="radio" name="vehicletype" value="bomber">Bomber<br>
+            <input type="radio" name="vehicletype" value="attacker">Attacker<br>
+			<input type="radio" name="vehicletype" value="tank">Tank<br>
+			<input type="radio" name="vehicletype" value="truck">AA truck<br>
+                </div>
+
+		<div>
+			<p>My Battle Rating (BR) is:</p>
+			<input type="range"  min="1.0" max="9.0" />
+		</div>
+	</form>
 	<!-- spes commentar </%/= og </%/- (með einga skástrik) fyrir underscore virkni -->
 	<script type="text/template" id="item-template">
 		<div class="view">
@@ -48,6 +69,7 @@
 		<button id="clear-completed">Clear completed (<%= completed %>)</button>
 		<% } %>
 	</script>
+	
 	<script src="js/lib/base.js"></script>
 	<script src="js/lib/jquery.js"></script>
 	<script src="js/lib/underscore.js"></script>
