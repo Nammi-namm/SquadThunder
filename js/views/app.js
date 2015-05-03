@@ -35,6 +35,9 @@
     initialize: function() {
       this.allCheckbox = this.$('#toggle-all')[0];
       this.$input = this.$('#new-todo');
+      this.$inputgamemode = this.$('new-gamemode');
+      this.$inputvehicletype = this.$('new-vehicle');
+      this.$inputbattlerating = this.$('new-br');
       this.$footer = this.$('#footer');
       this.$main = this.$('#main');
 
@@ -116,6 +119,9 @@
       }
       app.Todos.create( this.newAttributes() );
       this.$input.val('');
+      this.$inputgamemode.val('');
+      this.$inputvehicletype.val('');
+      this.$inputbattlerating.val('');
     },
 
     // Clear all completed todo items, destroying their models.

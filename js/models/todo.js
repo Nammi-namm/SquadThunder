@@ -12,10 +12,13 @@
     // Default attributes ensure that each todo created has `title` and `completed` keys.
     defaults: {
       title: '',
+      gamemode '',
+      vehicletype '',
+      battlerating '',
       completed: false
     },
 
-    // Toggle the `completed` state of this todo item.
+    // Toggle the `available` state of this todo item.
     toggle: function() {
       this.save({
         completed: !this.get('completed')
