@@ -1,5 +1,9 @@
 <!doctype html>
 <html lang="en_GB" data-framework="backbonejs">
+<?php 
+	include ("dbcon/dbcon.php");
+	include ("startsession.php");
+?>
 	<head>
 		<meta charset="utf-8">
 		<title>SquadThunder</title>
