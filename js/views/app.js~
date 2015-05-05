@@ -2,6 +2,12 @@
   // js/views/app.js
 
   var app = app || {};
+  
+  var username = "userexample";
+  var gameMode = "gamenammi";
+  var nation = "nationnammi";
+  var vehicle = "vehiclenammi";
+  var battlerating = "battlenammi";
 
   // The Application
   // ---------------
@@ -23,9 +29,24 @@
     //clearCompleted removar itemin í todo list sem hafa verið merkt sem completed þegar user klikkar á clear Completed checkbox.
     // toggleAllComplete leyfir notandi að merkja alla itemum í todo list sem completedy með því að smella á toggle-all 
     events: {
-      'keypress #new-todo': 'createOnEnter',
+      'keypress #header': 'createOnEnter',
       'click #clear-completed': 'clearCompleted',
-      'click #toggle-all': 'toggleAllComplete'
+      'click #toggle-all': 'toggleAllComplete',
+      'click input:radio' : 'radioselect'
+    },
+    
+    radioselect: function(event) {
+    	var element = $(event.target);
+    	console.log(element.attr("name"),element.val());
+    	if (element.attr("name") === "gamemode") {
+    		gameMode = element.val();
+    	}
+    	if (element.attr("name") === "nation") {
+    		nation = element.val();
+    	}
+    	if (element.attr("name") === "vehicletype") {
+    		vehicle = element.val();
+    	}
     },
 
 
@@ -34,11 +55,10 @@
     // loading any preexisting todos that might be saved in *localStorage*.
     initialize: function() {
       this.allCheckbox = this.$('#toggle-all')[0];
-      this.$input = this.$('#new-todo');
-      this.$inputgamemode = this.$('#new-gamemode');
-      this.$inputgamemode = this.$('#new-nation');
-      this.$inputvehicletype = this.$('#new-vehicle');
-      this.$inputbattlerating = this.$('#new-br');
+      username = this.$('#new-todo');
+
+
+      battlerating = this.$('#new-battlerating')
       this.$footer = this.$('#footer');
       this.$main = this.$('#main');
 
@@ -105,25 +125,26 @@
 
     // Generate the attributes for a new Todo item.
     newAttributes: function() {
-      return {
-        title: this.$input.val().trim(),
-        order: app.Todos.nextOrder(),
-        completed: false
-      };
+    	var string = "";
+    	console.log(username.val(), battlerating);
+    	
+     	string = string + username.val() + " - " + String(gameMode) + " - " + String(nation) + " - " + String(vehicle) + " - " + battlerating.val();
+     	return {
+			
+        	title: string,
+        	order: app.Todos.nextOrder(),
+        	completed: false
+     	};
     },
 
     // If you hit return in the main input field, create new Todo model,
     // persisting it to localStorage.
     createOnEnter: function( event ) {
-      if ( event.which !== ENTER_KEY || !this.$input.val().trim() ) {
+      if ( event.which !== ENTER_KEY || !username ) {
         return;
       }
       app.Todos.create( this.newAttributes() );
-      this.$input.val('');
-      
-      this.$inputgamemode.val('');
-      this.$inputvehicletype.val('');
-      this.$inputbattlerating.val('');
+      //this.$input.val('');
     },
 
     // Clear all completed todo items, destroying their models.

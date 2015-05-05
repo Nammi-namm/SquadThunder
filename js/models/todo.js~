@@ -16,8 +16,8 @@
       nation: '',
       vehicletype: '',
       battlerating: '',
-      completed: false,
-      username: ''
+      completed: false
+      
     },	
 
     // Toggle the `available` state of this todo item.
