@@ -13,6 +13,7 @@
     defaults: {
       title: '',
       gamemode: '',
+      nation: '',
       vehicletype: '',
       battlerating: '',
       completed: false
