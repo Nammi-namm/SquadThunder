@@ -55,10 +55,15 @@
 			<input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
 			<label><%- title %></label>
 			<a href="http://warthunder.com/en/community/userinfo/?nick=<%= username %>"><button class="link">Go to Website</button></a>
+			
 			<button class="destroy"></button>
 		</div>
 		<input class="edit" value="<%- title %>">
 	</script>
+	<?php
+		$sql = "INSERT INTO players (username, data)
+		VALUES ('John', 'Doe')";
+	?>
 	<!-- notað til að populeita footerinn-->
 	<!-- displayer hvað mörg incomplete items eftir og helfur hyperlinkar sem við notum til að gera nokkur actions með router. Notar líka takka sem hreinsar allt-->
 	<script type="text/template" id="stats-template">
