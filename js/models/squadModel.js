@@ -13,12 +13,8 @@ app.Squad = Backbone.Model.extend({
 	defaults: {
 		//part of model 
 		title: '',
-		gamemode: '',
-		nation: '',
-		vehicletype: '',
-		battlerating: '',
 		completed: false,
-		username: ''
+		username: '' // required fyrir url á warthunder profile
 	},	
 
 	url: "/SquadThunder/sync.php",
