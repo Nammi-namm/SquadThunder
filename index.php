@@ -40,8 +40,11 @@
 			<input id="new-vehicle" type="radio" name="vehicletype" value="Truck">AA truck<br>
         </div>
 		<div id="newrating">
-			<p>My Battle Rating (BR) of the vehicle I'm using is:</p>
-			<input id="new-battlerating" placeholder="example: 3.7" >
+			<p>
+				My Battle Rating (BR) of the vehicle I'm using is:
+				<input id="new-battlerating" placeholder="example: 3.7" >
+			</p>
+			<p> </p>
 		</div>
 	</header>
 		<section id="main">
@@ -55,7 +58,7 @@
 		<div class="view">
 			<input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
 			<label><%- title %></label>
-			<a href="http://warthunder.com/en/community/userinfo/?nick=<%= username %>"><button class="link">Go to Website</button></a>
+			<a href="http://warthunder.com/en/community/userinfo/?nick=<%= username %>"><button class="link">Go to player profile</button></a>
 			
 			<button class="destroy"></button>
 		</div>
