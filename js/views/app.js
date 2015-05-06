@@ -1,168 +1,169 @@
+// js/views/app.js
 
-  // js/views/app.js
+var app = app || {};
 
-  var app = app || {};
-  
-  var username = "userexample";
-  var gameMode = "gamenammi";
-  var nation = "nationnammi";
-  var vehicle = "vehiclenammi";
-  var battlerating = "battlenammi";
+// manually definað globally fyrir notkun down the line
+// ef ekkert specifiað þá kemur það sem svona í gegn
+var username = "nick", 
+	gameMode = "mode",
+	nation = "nation",
+	vehicle = "vehicle",
+	battlerating = "BR";
 
-  // The Application
-  // ---------------
-  // er með logit til að búa til ný todos, edita þá, og filtera þá miðað við þeirra completed status.
+// The Application
+// ---------------
+// er með logit til að búa til ný squads, edita þá, og filtera þá miðað við þeirra completed status.
 
-  // Our overall **AppView** is the top-level piece of UI.
-  app.AppView = Backbone.View.extend({
+// Our overall **AppView** is the top-level piece of UI.
+app.AppView = Backbone.View.extend({
 
-    // Instead of generating a new element, bind to the existing skeleton of
-    // the App already present in the HTML.
-    el: '#todoapp',
+	// Instead of generating a new element, bind to the existing skeleton of
+	// the App already present in the HTML.
+	el: '#squadapp',
 
-    // Our template for the line of statistics at the bottom of the app.
-    statsTemplate: _.template( $('#stats-template').html() ),
+	// Our template for the line of statistics at the bottom of the app.
+	statsTemplate: _.template( $('#stats-template').html() ),
 
-    // Delegated events for creating new items, and clearing completed ones.
-    // declarar callbacks fyrir okkar DOM
-    // createOnEnter bír til nýtt todo model og geymir það í localStorage þegar user ítir á enter í <input/>. Gerir það líka klárt fyrir næsta input.
-    //clearCompleted removar itemin í todo list sem hafa verið merkt sem completed þegar user klikkar á clear Completed checkbox.
-    // toggleAllComplete leyfir notandi að merkja alla itemum í todo list sem completedy með því að smella á toggle-all 
-    events: {
-      'keypress #header': 'createOnEnter',
-      'click #clear-completed': 'clearCompleted',
-      'click #toggle-all': 'toggleAllComplete',
-      'click input:radio' : 'radioselect'
-    },
-    
-    radioselect: function(event) {
-    	var element = $(event.target);
-    	console.log(element.attr("name"),element.val());
-    	if (element.attr("name") === "gamemode") {
-    		gameMode = element.val();
-    	}
-    	if (element.attr("name") === "nation") {
-    		nation = element.val();
-    	}
-    	if (element.attr("name") === "vehicletype") {
-    		vehicle = element.val();
-    	}
-    },
+	// Delegated events for creating new items, and clearing completed ones.
+	// declarar callbacks fyrir okkar DOM
+	// createOnEnter bír til nýtt squad model og geymir það í localStorage þegar user ítir á enter í <input/>. Gerir það líka klárt fyrir næsta input.
+	//clearCompleted removar itemin í squad list sem hafa verið merkt sem completed þegar user klikkar á clear Completed checkbox.
+	// toggleAllComplete leyfir notandi að merkja alla itemum í squad list sem completedy með því að smella á toggle-all 
+	events: {
+		'keypress #header': 'createOnEnter',
+		'click #clear-completed': 'clearCompleted',
+		'click #toggle-all': 'toggleAllComplete',
+		'click input:radio' : 'radioselect'
+	},
 
-
-    // At initialization we bind to the relevant events on the `Todos`
-    // collection, when items are added or changed. Kick things off by
-    // loading any preexisting todos that might be saved in *localStorage*.
-    initialize: function() {
-      this.allCheckbox = this.$('#toggle-all')[0];
-      username = this.$('#new-todo');
+	radioselect: function(event) {
+		var element = $(event.target);
+		console.log(element.attr("name"),element.val());
+		if (element.attr("name") === "gamemode") {
+			gameMode = element.val();
+		}
+	 	if (element.attr("name") === "nation") {
+			nation = element.val();
+	 	}
+	 	if (element.attr("name") === "vehicletype") {
+	 		vehicle = element.val();
+	 	}
+	},
 
 
-      battlerating = this.$('#new-battlerating')
-      this.$footer = this.$('#footer');
-      this.$main = this.$('#main');
+	// At initialization we bind to the relevant events on the `Squads`
+	// collection, when items are added or changed. Kick things off by
+	// loading any preexisting squads that might be saved in *localStorage*.
+	initialize: function() {
+		this.allCheckbox = this.$('#toggle-all')[0];
+		username = this.$('#new-squad');
 
-      this.listenTo(app.Todos, 'add', this.addOne);
-      this.listenTo(app.Todos, 'reset', this.addAll);
 
-      this.listenTo(app.Todos, 'change:completed', this.filterOne);
-      this.listenTo(app.Todos,'filter', this.filterAll);
-      this.listenTo(app.Todos, 'all', this.render);
+		battlerating = this.$('#new-battlerating')
+		this.$footer = this.$('#footer');
+		this.$main = this.$('#main');
 
-      app.Todos.fetch();
-    },
+		this.listenTo(app.Squads, 'add', this.addOne);
+		this.listenTo(app.Squads, 'reset', this.addAll);
 
-    // Re-rendering the App just means refreshing the statistics -- the rest
-    // of the app doesn't change.
-    render: function() {
-      var completed = app.Todos.completed().length;
-      var remaining = app.Todos.remaining().length;
+		this.listenTo(app.Squads, 'change:completed', this.filterOne);
+		this.listenTo(app.Squads,'filter', this.filterAll);
+		this.listenTo(app.Squads, 'all', this.render);
 
-      if ( app.Todos.length ) {
-        this.$main.show();
-        this.$footer.show();
+		app.Squads.fetch();
+	},
 
-        this.$footer.html(this.statsTemplate({
-          completed: completed,
-          remaining: remaining
-        }));
+	// Re-rendering the App just means refreshing the statistics -- the rest
+	// of the app doesn't change.
+	render: function() {
+		var completed = app.Squads.completed().length;
+		var remaining = app.Squads.remaining().length;
 
-        this.$('#filters li a')
-          .removeClass('selected')
-          .filter('[href="#/' + ( app.TodoFilter || '' ) + '"]')
-          .addClass('selected');
-      } else {
-        this.$main.hide();
-        this.$footer.hide();
-      }
+		if ( app.Squads.length ) {
+			this.$main.show();
+			this.$footer.show();
+			
+			this.$footer.html(this.statsTemplate({
+				completed: completed,
+				remaining: remaining
+			}));
 
-      this.allCheckbox.checked = !remaining;
-    },
+			this.$('#filters li a')
+			.removeClass('selected')
+			.filter('[href="#/' + ( app.SquadFilter || '' ) + '"]')
+			.addClass('selected');
+		} else {
+			this.$main.hide();
+			this.$footer.hide();
+		}
 
-    // Add a single todo item to the list by creating a view for it, and
-    // appending its element to the `<ul>`.
-    addOne: function( todo ) {
-      var view = new app.TodoView({ model: todo });
-      $('#todo-list').append( view.render().el );
-    },
+		this.allCheckbox.checked = !remaining;
+	},
 
-    // Add all items in the **Todos** collection at once.
-    addAll: function() {
-      this.$('#todo-list').html('');
-      app.Todos.each(this.addOne, this);
-    },
+	// Add a single squad player item to the list by creating a view for it, and
+	// appending its element to the `<ul>`.
+	addOne: function( squad ) {
+		var view = new app.SquadView({ model: squad });
+		$('#squad-list').append( view.render().el );
+	},
 
-	//  filterar bara það sem er selectað
-    filterOne : function (todo) {
-      todo.trigger('visible');
-    },
+	// Add all items in the Squads collection at once.
+	addAll: function() {
+		this.$('#squad-list').html('');
+		app.Squads.each(this.addOne, this);
+	},
+
+	// filterar bara það sem er selectað
+	filterOne : function (squad) {
+		squad.trigger('visible');
+	},
 
 	// filterar öllu
-    filterAll : function () {
-      app.Todos.each(this.filterOne, this);
-    },
+	filterAll : function () {
+		app.Squads.each(this.filterOne, this);
+	},
 
 
-    // Generate the attributes for a new Todo item.
-    newAttributes: function() {
-    	var string = "";
-    	console.log(username.val(), battlerating);
-    	
-     	string = string + username.val() + " - " + String(gameMode) + " - " + String(nation) + " - " + String(vehicle) + " - " + battlerating.val();
-     	return {
-     		// model attributes
-        	title: string,
-        	order: app.Todos.nextOrder(),
-        	completed: false,
-        	username: username.val()
-     	};
-    },
+	// Generate the attributes for a new Squad player.
+	newAttributes: function() {
+	 	var string = "";
+		console.log(username.val(), battlerating);
+		// a single string sent as output containing all the other relevant info the player has inputted.
+		string = string + username.val() + " - " + String(gameMode) + " - " + String(nation) + " - " + String(vehicle) + " - " + battlerating.val();
+		return {
+			// model attributes
+		 	title: string,
+			order: app.Squads.nextOrder(),
+			completed: false,
+			username: username.val()
+		};
+	},
 
-    // If you hit return in the main input field, create new Todo model,
-    // persisting it to localStorage.
-    createOnEnter: function( event ) {
-      if ( event.which !== ENTER_KEY || !username ) {
-        return;
-      }
-      var model = app.Todos.create( this.newAttributes() );
-      model.on('request', function() { console.log("request", arguments)});
-      //this.$input.val('');
-    },
+	// If you hit return in the main input field, create new Squad player model,
+	// persisting it to localStorage.
+	createOnEnter: function( event ) {
+		if ( event.which !== ENTER_KEY || !username ) {
+			return;
+		}
+		var model = app.Squads.create( this.newAttributes() );
+		model.on('request', function() { console.log("request", arguments)});
+		//this.$input.val('');
+	},
 
-    // Clear all completed todo items, destroying their models.
-    clearCompleted: function() {
-      _.invoke(app.Todos.completed(), 'destroy');
-      return false;
-    },
+	// Clear all completed squad players, destroying their models. not of reccomendations though
+	clearCompleted: function() {
+		_.invoke(app.Squads.completed(), 'destroy');
+		return false;
+	},
 
 	// togglar allt sem er valið fyrir completion og breytir það í completed
-    toggleAllComplete: function() {
-      var completed = this.allCheckbox.checked;
+	toggleAllComplete: function() {
+		var completed = this.allCheckbox.checked;
 
-      app.Todos.each(function( todo ) {
-        todo.save({
-          'completed': completed
-        });
-      });
-    }
-  });
+		app.Squads.each(function( squad ) {
+			squad.save({
+				'completed': completed
+			});
+		});
+	}
+});

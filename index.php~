@@ -12,11 +12,11 @@
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
-		<section id="todoapp">
+		<section id="squadapp">
 		<header id="header">
 		<h1>SquadThunder</h1>
-		<!-- Þarf input fyrir new todos -->
-		<input id="new-todo" placeholder="What is your in game name?" autofocus>
+		<!-- Þarf input fyrir new squad players -->
+		<input id="new-squad" placeholder="What is your in game name?" autofocus>
 		<div id="newgamemode">
 			<p>The Gamemode I'm playing in:</p>
 			<input id="new-gamemode" type="radio" name="gamemode" value="AB">Arcade<br>
@@ -33,11 +33,11 @@
 		</div>
 		<div id="newnation">
 			<p>The type of vehicle I'm using is a:</p>
-            <input id="new-vehicle" type="radio" name="vehicletype" value="fighter">Fighter<br>
-            <input id="new-vehicle" type="radio" name="vehicletype" value="bomber">Bomber<br>
-            <input id="new-vehicle" type="radio" name="vehicletype" value="attacker">Attacker<br>
-			<input id="new-vehicle" type="radio" name="vehicletype" value="tank">Tank<br>
-			<input id="new-vehicle" type="radio" name="vehicletype" value="truck">AA truck<br>
+            <input id="new-vehicle" type="radio" name="vehicletype" value="Fighter">Fighter<br>
+            <input id="new-vehicle" type="radio" name="vehicletype" value="Bomber">Bomber<br>
+            <input id="new-vehicle" type="radio" name="vehicletype" value="Attacker">Attacker<br>
+			<input id="new-vehicle" type="radio" name="vehicletype" value="Tank">Tank<br>
+			<input id="new-vehicle" type="radio" name="vehicletype" value="Truck">AA truck<br>
         </div>
 		<div id="newrating">
 			<p>My Battle Rating (BR) of the vehicle I'm using is:</p>
@@ -47,7 +47,7 @@
 		<section id="main">
 			<input id="toggle-all" type="checkbox">
 			<label for="toggle-all">Mark all as complete</label>
-			<ul id="todo-list"></ul>
+			<ul id="squad-list"></ul>
 		</section>
 	</section>
 	<!-- spes commentar </%/= og </%/- (með einga skástrik) fyrir underscore virkni -->
@@ -64,7 +64,7 @@
 	<!-- notað til að populeita footerinn-->
 	<!-- displayer hvað mörg incomplete items eftir og helfur hyperlinkar sem við notum til að gera nokkur actions með router. Notar líka takka sem hreinsar allt-->
 	<script type="text/template" id="stats-template">
-		<span id="todo-count"><strong><%= remaining %></strong> <%= remaining === 1 ? 'item' : 'items' %> left</span>
+		<span id="squad-count"><strong><%= remaining %></strong> <%= remaining === 1 ? 'item' : 'items' %> left</span>
 			<ul id="filters">
 				<li>
 				<a class="selected" href="#/">All</a>
@@ -85,13 +85,11 @@
 	<script src="js/lib/jquery.js"></script>
 	<script src="js/lib/underscore.js"></script>
 	<script src="js/lib/backbone.js"></script>
-	<script src="js/lib/backbone.localStorage.js"></script>
-	<script src="js/models/todo.js"></script>
-	<script src="js/collections/todos.js"></script>
-	<script src="js/views/todos.js"></script>
+	<script src="js/models/squadModel.js"></script>
+	<script src="js/collections/squadsCollection.js"></script>
+	<script src="js/views/squadsView.js"></script>
 	<script src="js/views/app.js"></script>
 	<script src="js/routers/router.js"></script>
 	<script src="js/app.js"></script>
-	<script src="js/scrape/scrape.js"></script>
 	</body>
 </html>

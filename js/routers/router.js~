@@ -3,12 +3,12 @@
   // Squad Router
   // ----------
   
-  // eftirfarandi routes:
+  //eftirfarandi routes:
   //	#/ (all - default)
   //	#/active
   //	#/completed
   
-  // þegar route breytist, squad player listin filterar á model level og þau klass sem eru valin í filter links í fotter verða togglað eins og var.
+  // þegar route breytist, todo listin filterar á model level og þau klass sem eru valin í filter links í fotter verða togglað eins og var.
   // Þegar item er updatað a meðan filter er í gangi verður það updatað í samræmi.
 
   var Workspace = Backbone.Router.extend({
