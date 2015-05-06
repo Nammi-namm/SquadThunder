@@ -1,8 +1,9 @@
 <!doctype html>
 <html lang="en_GB" data-framework="backbonejs">
 <?php 
-	include ("dbcon/dbcon.php");
-	include ("startsession.php");
+	#include ("dbcon/dbcon.php");
+	#include ("startsession.php");
+	error_log("whut");
 ?>
 	<head>
 		<meta charset="utf-8">
@@ -60,10 +61,6 @@
 		</div>
 		<input class="edit" value="<%- title %>">
 	</script>
-	<?php
-		$sql = "INSERT INTO players (username, data)
-		VALUES ('John', 'Doe')";
-	?>
 	<!-- notað til að populeita footerinn-->
 	<!-- displayer hvað mörg incomplete items eftir og helfur hyperlinkar sem við notum til að gera nokkur actions með router. Notar líka takka sem hreinsar allt-->
 	<script type="text/template" id="stats-template">
@@ -88,7 +85,7 @@
 	<script src="js/lib/jquery.js"></script>
 	<script src="js/lib/underscore.js"></script>
 	<script src="js/lib/backbone.js"></script>
-	<script src="js/lib/backbone.localStorage.js"></script>
+	<!--script src="js/lib/backbone.localStorage.js"></script-->
 	<script src="js/models/todo.js"></script>
 	<script src="js/collections/todos.js"></script>
 	<script src="js/views/todos.js"></script>

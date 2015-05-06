@@ -12,8 +12,6 @@
 
     // Reference to this collection's model.
     model: app.Todo,
-    
-    url: '/SquadThunder/sync.php',
 
     // Save all of the todo items under the `"todos-backbone"` namespace.
     //localStorage: new Backbone.LocalStorage('todos-backbone'),

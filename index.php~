@@ -1,8 +1,9 @@
 <!doctype html>
 <html lang="en_GB" data-framework="backbonejs">
 <?php 
-	include ("dbcon/dbcon.php");
-	include ("startsession.php");
+	#include ("dbcon/dbcon.php");
+	#include ("startsession.php");
+	error_log("whut");
 ?>
 	<head>
 		<meta charset="utf-8">
@@ -60,10 +61,6 @@
 		</div>
 		<input class="edit" value="<%- title %>">
 	</script>
-	<?php
-		$sql = "INSERT INTO players (username, data)
-		VALUES ('John', 'Doe')";
-	?>
 	<!-- notað til að populeita footerinn-->
 	<!-- displayer hvað mörg incomplete items eftir og helfur hyperlinkar sem við notum til að gera nokkur actions með router. Notar líka takka sem hreinsar allt-->
 	<script type="text/template" id="stats-template">

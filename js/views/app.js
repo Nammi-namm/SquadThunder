@@ -130,6 +130,7 @@
     	
      	string = string + username.val() + " - " + String(gameMode) + " - " + String(nation) + " - " + String(vehicle) + " - " + battlerating.val();
      	return {
+     		// model attributes
         	title: string,
         	order: app.Todos.nextOrder(),
         	completed: false,
@@ -143,7 +144,8 @@
       if ( event.which !== ENTER_KEY || !username ) {
         return;
       }
-      app.Todos.create( this.newAttributes() );
+      var model = app.Todos.create( this.newAttributes() );
+      model.on('request', function() { console.log("request", arguments)});
       //this.$input.val('');
     },
 

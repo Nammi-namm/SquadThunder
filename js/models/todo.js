@@ -11,6 +11,7 @@
 
     // Default attributes ensure that each todo created has `title` and `completed` keys.
     defaults: {
+      //part of model attributes
       title: '',
       gamemode: '',
       nation: '',
@@ -19,6 +20,8 @@
       completed: false,
       username: ''
     },	
+    
+    url: "/SquadThunder/sync.php",
 
     // Toggle the `available` state of this todo item.
     toggle: function() {
